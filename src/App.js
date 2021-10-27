@@ -6,6 +6,7 @@ import WatchlistContext from './WatchlistContext'
 import STORE from './store'
 import UserPage from './components/User-page';
 import SignUp from './components/Sign-up'
+import Searchpage from './components/Search-page';
 
 class App extends Component {
   state = {
@@ -24,6 +25,14 @@ class App extends Component {
   setClient = newClient => {
     this.setState({
       targetClient: newClient
+    })
+  }
+
+  addMovie = newMovie => {
+    const newList = this.state.list
+    newList.push(newMovie)
+    this.setState({
+      list: newList
     })
   }
 
@@ -48,10 +57,11 @@ class App extends Component {
       setClient: this.setClient,
       signOut: this.signOut,
       list: this.state.list,
-      addClient: this.addClient
+      addClient: this.addClient,
+      addMovie: this.addMovie
     }
     
-
+    console.log(this.state.list)
     return (
       <WatchlistContext.Provider value={contextValue}>
       <div className="App">
@@ -77,6 +87,12 @@ class App extends Component {
           key={'/signup'}
           path={'/signup'}
           component={SignUp}
+        />
+        <Route
+          exact
+          key={'/search'}
+          path={'/search'}
+          component={Searchpage}
         />
         <footer className="footer">
             Kenneth Landis ©

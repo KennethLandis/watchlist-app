@@ -38,3 +38,12 @@
   min-height: 60vh;
   height: 100%;
 }
+
+.img {
+  height: 300px;
+  width: 200px;
+}
+
+.results {
+  list-style: none;
+}
