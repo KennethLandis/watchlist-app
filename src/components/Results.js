@@ -2,7 +2,6 @@ import React from 'react';
 import Item from './Item';
 
 function Results(props) {
-    console.log(props.list)
     return (
         <ul className='results'>
             {props.list.map(item => {

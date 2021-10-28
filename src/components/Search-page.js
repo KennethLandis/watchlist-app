@@ -18,7 +18,6 @@ class Searchpage extends Component {
         e.preventDefault();
         const apiKey = process.env.REACT_APP_API_KEY;
         const url = `https://imdb-api.com/en/API/SearchMovie/${apiKey}/${this.state.search}`
-        console.log(url)
         fetch(url)
             .then(response => response.json())
             .then(response => this.setState({
@@ -38,12 +37,10 @@ class Searchpage extends Component {
 
     home = () => {
         const user = this.context.targetClient.client_name;
-        console.log(user)
         this.props.history.push(`/user/${user}`)
     }
 
     render() {
-        console.log(this.state.list)
         return(
             <div className="main">
                 <button className='home' type='button' onClick={() => this.home()}>Home</button>

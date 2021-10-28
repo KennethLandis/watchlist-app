@@ -2,7 +2,6 @@ import React from 'react';
 import Movie from './Movie';
 
 function Userlist(props) {
-    console.log(props.list)
     return (
         <ul className='results'>
             {props.list.map(item => {
@@ -13,7 +12,7 @@ function Userlist(props) {
                         title={item.title}
                         image={item.image}
                         description={item.description}
-                        addMovie={props.addMovie}
+                        deleteMovie={props.deleteMovie}
                     />
                 )
             })}

@@ -38,7 +38,8 @@ class App extends Component {
 
   signOut = () => {
     this.setState({
-      targetClient: []
+      targetClient: [],
+      list: []
     })
   }
 
@@ -50,6 +51,14 @@ class App extends Component {
     })
   }
 
+  deleteMovie = movieId => {
+    const newList = this.state.list.filter(movie =>
+      movie.id !== movieId)
+    this.setState({
+      list: newList
+    })
+  }
+
   render() {
     const contextValue = {
       clients: this.state.clients,
@@ -58,10 +67,10 @@ class App extends Component {
       signOut: this.signOut,
       list: this.state.list,
       addClient: this.addClient,
-      addMovie: this.addMovie
+      addMovie: this.addMovie,
+      deleteMovie: this.deleteMovie
     }
     
-    console.log(this.state.list)
     return (
       <WatchlistContext.Provider value={contextValue}>
       <div className="App">
