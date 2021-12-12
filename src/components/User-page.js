@@ -11,6 +11,25 @@ class UserPage extends Component {
     }
     static contextType = WatchlistContext;
 
+    componentDidMount() {
+        const api_url = process.env.REACT_APP_API_URL
+        fetch(`${api_url}/movies/${this.context.targetClient.id}`)
+        .then(response => {
+            if(!response.ok) {
+                return response.json().then(error => {
+                    throw error
+                })
+            }
+            return response.json()
+        })
+        .then(data => {
+            this.context.setList(data)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+      }
+
     signOut = () => {
         this.context.signOut();
         this.props.history.push('/')
@@ -21,7 +40,24 @@ class UserPage extends Component {
     }
 
     deleteMovie(movieId) {
-        this.context.deleteMovie(movieId)
+        const api_url = process.env.REACT_APP_API_URL
+        fetch(`${api_url}/movies/delete/${movieId}`, {
+            method: `DELETE`
+        })
+        .then(response => {
+            if(!response.ok) {
+                return response.json().then(error => {
+                    throw error
+                })
+            }
+            return response
+        })
+        .then(data => {
+            this.context.deleteMovie(movieId)
+        })
+        .catch(error => {
+            console.error(error)
+        })
     }
 
     render() {

@@ -26,7 +26,27 @@ class Searchpage extends Component {
     }
 
     addMovie(newMovie) {
+        const api_url = process.env.REACT_APP_API_URL
+        fetch(`${api_url}/movies`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json' },
+                body: JSON.stringify ( newMovie )
+            })
+            .then(response => {
+                if(!response.ok) {
+                    return response.json().then(error => {
+                        throw error
+                    })
+                }
+                return response.json()
+            })
+            .then(data => {
         this.context.addMovie(newMovie)
+        })
+        .catch(error => {
+            console.error(error)
+        })
     }
 
     setSearch(search) {
@@ -45,7 +65,7 @@ class Searchpage extends Component {
             <div className="main">
                 <button className='home' type='button' onClick={() => this.home()}>Home</button>
                 <Searchbar setSearch={search => this.setSearch(search)} handleSubmit={e => this.handleSubmit(e)}/>
-                <Results list={this.state.list} addMovie={newMovie => this.addMovie(newMovie)}/>
+                <Results list={this.state.list} client={this.context.targetClient} addMovie={newMovie => this.addMovie(newMovie)}/>
             </div>
         );
     }

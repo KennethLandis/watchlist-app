@@ -2,12 +2,13 @@ import React from 'react';
 
 
 function Item(props) {
-
+    
     const newMovie = {
         id: props.id,
         title: props.title,
         image: props.image,
         description: props.description,
+        client_id: props.client.id
     }
 
     return (

@@ -13,6 +13,7 @@ function Results(props) {
                         image={item.image}
                         description={item.description}
                         addMovie={props.addMovie}
+                        client={props.client}
                     />
                 )
             })}

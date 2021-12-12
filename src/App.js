@@ -3,7 +3,6 @@ import { Route } from 'react-router';
 import './App.css';
 import Home from './components/Home';
 import WatchlistContext from './WatchlistContext'
-import STORE from './store'
 import UserPage from './components/User-page';
 import SignUp from './components/Sign-up'
 import Searchpage from './components/Search-page';
@@ -16,9 +15,27 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const api_url = process.env.REACT_APP_API_URL
+    Promise.all([
+      fetch(`${api_url}/clients`),
+      fetch(`${api_url}/movies`)
+    ])
+    .then(([Res1, Res2]) => {
+      if (!Res1.ok)
+        return Res1.json().then(e => Promise.reject(e))
+      if (!Res2.ok)
+        return Res2.json().then(e => Promise.reject(e))
+      return Promise.all([Res1.json(), Res2.json()]);
+    })
+    .then(([clients1, list1]) => this.setState({
+      clients: clients1,
+      list: list1
+    }))
+  }
+
+  setList = newList => {
     this.setState({
-      clients: STORE.clients,
-      list: STORE.list
+      list: newList
     })
   }
   
@@ -61,6 +78,7 @@ class App extends Component {
 
   render() {
     const contextValue = {
+      setList: this.setList,
       clients: this.state.clients,
       targetClient: this.state.targetClient,
       setClient: this.setClient,
