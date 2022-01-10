@@ -15,4 +15,3 @@ Server github: https://github.com/KennethLandis/watchful-api
 
 
 
-Screenshot: ![image](https://user-images.githubusercontent.com/67128061/148728118-ca2d93e0-d102-42d9-be92-9b6f8aa2c2ca.png)
