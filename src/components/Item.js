@@ -12,7 +12,7 @@ function Item(props) {
     }
 
     return (
-        <li>
+        <li className="movie">
             <h2>{props.title}</h2>
             <img className="img" alt="movie-cover" src={props.image}></img>
             <p>Description: {props.description}</p>

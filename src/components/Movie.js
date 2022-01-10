@@ -6,7 +6,7 @@ function Movie(props) {
     const movieId = props.id
 
     return (
-        <li>
+        <li className="movie">
             <h2>{props.title}</h2>
             <img className="img" alt="movie-cover" src={props.image}></img>
             <p>Description: {props.description}</p>

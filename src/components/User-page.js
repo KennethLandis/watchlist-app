@@ -58,6 +58,7 @@ class UserPage extends Component {
         .catch(error => {
             console.error(error)
         })
+        alert('Movie Removed!')
     }
 
     render() {

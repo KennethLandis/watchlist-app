@@ -66,7 +66,7 @@ class SignIn extends Component {
 
     render() {
         return(
-            <form className="main" onSubmit={e => this.handleSubmit(e)}>
+            <form className="Sign-in" onSubmit={e => this.handleSubmit(e)}>
                 <h3>Sign In</h3>
                 <div className="form-group">
                     <label htmlFor="user-name">User Name: </label>

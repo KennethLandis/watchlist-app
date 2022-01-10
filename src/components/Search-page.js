@@ -47,6 +47,7 @@ class Searchpage extends Component {
         .catch(error => {
             console.error(error)
         })
+        alert('Movie added!')
     }
 
     setSearch(search) {
@@ -63,6 +64,7 @@ class Searchpage extends Component {
     render() {
         return(
             <div className="main">
+                <h2>Search for new movies below!</h2>
                 <button className='home' type='button' onClick={() => this.home()}>Home</button>
                 <Searchbar setSearch={search => this.setSearch(search)} handleSubmit={e => this.handleSubmit(e)}/>
                 <Results list={this.state.list} client={this.context.targetClient} addMovie={newMovie => this.addMovie(newMovie)}/>
